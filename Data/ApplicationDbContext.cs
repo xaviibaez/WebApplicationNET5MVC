@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplicationNET.Models;
 
 namespace WebApplicationNET.Data
 {
@@ -12,5 +13,7 @@ namespace WebApplicationNET.Data
         {
 
         }
+
+        public DbSet<Category> Category { get; set; }
     }
 }
