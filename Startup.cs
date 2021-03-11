@@ -40,6 +40,8 @@ namespace WebApplicationNET
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
+            //WWWROOT FOLDER se usará con este metodo
             app.UseStaticFiles();
 
             app.UseRouting();
