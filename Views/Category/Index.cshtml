@@ -6,8 +6,11 @@
         <div class="col-6">
             <h2 class="text-primary">Category List</h2>
         </div>
-        <div class="col-6">
-            Create New Category
+        <div class="col-6 text-right">
+            @*Hacemos un enlace a controller Category accion Create*@
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                Create New Category
+            </a>
         </div>
     </div>
 
@@ -25,6 +28,7 @@
                     <th>
                         Display Order
                     </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

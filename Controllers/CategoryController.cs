@@ -19,6 +19,7 @@ namespace WebApplicationNET.Controllers
             _db = db;
         }
 
+        //Listar de la bbdd
         public IActionResult Index()
         {
             //Lista de categorias mapeadas
@@ -26,6 +27,13 @@ namespace WebApplicationNET.Controllers
 
             //Lo enviamos a la view por parametro
             return View(objList);
+        }
+
+        //GET - CREATE Crear de categoria
+        public IActionResult Create()
+        {
+            //No pasamos info porque vamos a crearla
+            return View();
         }
     }
 }
