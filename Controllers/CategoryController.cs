@@ -35,5 +35,21 @@ namespace WebApplicationNET.Controllers
             //No pasamos info porque vamos a crearla
             return View();
         }
+
+        //POST - CREATE Crear de categoria
+        [HttpPost]
+        //Token de seguridad
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Create(Category obj)
+        {
+            //Objeto que haremos insert en la bbdd
+            _db.Category.Add(obj);
+
+            //Commit
+            _db.SaveChanges();
+
+            //Devolvemos un redirect a la acción Index
+            return RedirectToAction("Index");
+        }
     }
 }
