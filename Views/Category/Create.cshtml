@@ -1,10 +1,10 @@
 ﻿@* Lo que recibimos del controller *@
 @model WebApplicationNET.Models.Category
-
 @*Usamos form con metodo post y acción create*@
 <form method="post" asp-action="Create">
     <div class="border p-3">
-        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+        @*Validacion de la view*@
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
             <h2 class="text-info pl-3">Add Category</h2>
         </div>
@@ -37,7 +37,7 @@
                             <input type="submit" class="btn btn-info w-100" value="Create" />
                         </div>
                         <div class="col">
-                            @*Redirection a Indez*@
+                            @*Redirection a Index*@
                             <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> Back</a>
                         </div>
                     </div>
@@ -50,3 +50,8 @@
     </div>
 
 </form>
+
+@*Autovalidació del lado del cliente con JS - Cambia el mensaje de error automaticamente - pijeria para mi gusto*@
+@section Scripts{ 
+    @{ <partial name="_ValidationScriptsPartial" />}
+}

@@ -42,14 +42,19 @@ namespace WebApplicationNET.Controllers
         [AutoValidateAntiforgeryToken]
         public IActionResult Create(Category obj)
         {
-            //Objeto que haremos insert en la bbdd
-            _db.Category.Add(obj);
+            //Recuperamos las validaciones puestas en el Model con este if
+            if (ModelState.IsValid)
+            {
+                //Objeto que haremos insert en la bbdd
+                _db.Category.Add(obj);
 
-            //Commit
-            _db.SaveChanges();
+                //Commit
+                _db.SaveChanges();
 
-            //Devolvemos un redirect a la acción Index
-            return RedirectToAction("Index");
+                //Devolvemos un redirect a la acción Index
+                return RedirectToAction("Index");
+            }
+            return View(obj);
         }
     }
 }
