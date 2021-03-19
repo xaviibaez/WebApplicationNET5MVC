@@ -2,6 +2,9 @@
 @model WebApplicationNET.Models.Category
 @*Usamos form con metodo post y acción create*@
 <form method="post">
+    @*Por si en algun momento necesitamos enviar mas de un objeto a CategoryController EDIT POST -
+        Enviamos escondido el ID*@
+    <input asp-for="ID" hidden />
     <div class="border p-3">
         @*Validacion de la view - Esto estaba comentado*@
         <div class="form-group row">

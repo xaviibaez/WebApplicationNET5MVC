@@ -77,5 +77,26 @@ namespace WebApplicationNET.Controllers
             //Si lo recuperamos lo enviamos por parametro a la view
             return View(obj);
         }
+
+        //POST - EDIT Editar de categoria
+        [HttpPost]
+        //Token de seguridad
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Edit(Category obj)
+        {
+            //Recuperamos las validaciones puestas en el Model con este if
+            if (ModelState.IsValid)
+            {
+                //Objeto que haremos insert en la bbdd
+                _db.Category.Update(obj);
+
+                //Commit
+                _db.SaveChanges();
+
+                //Devolvemos un redirect a la acción Index
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
     }
 }
