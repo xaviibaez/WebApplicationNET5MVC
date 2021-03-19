@@ -87,7 +87,7 @@ namespace WebApplicationNET.Controllers
             //Recuperamos las validaciones puestas en el Model con este if
             if (ModelState.IsValid)
             {
-                //Objeto que haremos insert en la bbdd
+                //Objeto que editaremos en la bbdd
                 _db.Category.Update(obj);
 
                 //Commit
@@ -97,6 +97,51 @@ namespace WebApplicationNET.Controllers
                 return RedirectToAction("Index");
             }
             return View(obj);
+        }
+
+        //GET - DELETE Eliminar categoria
+        public IActionResult Delete(int? id)
+        {
+            //Si es null o 0 no existira por tanto no podemos buscarlo.
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            //Lo buscamos en la bbdd para eliminarlo
+            var obj = _db.Category.Find(id);
+            //Si no lo encuentra devolvemos notFound como previamente.
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            //Si lo recuperamos lo enviamos por parametro a la view
+            return View(obj);
+        }
+
+        //POST - DELETE Eliminar de categoria
+        [HttpPost]
+        //Token de seguridad
+        [AutoValidateAntiforgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            //Lo buscamos en la bbdd para editarlo
+            var obj = _db.Category.Find(id);
+
+            if(obj == null)
+            {
+                return NotFound();
+            }
+
+            //Objeto que eliminaremos en la bbdd
+            _db.Category.Remove(obj);
+
+            //Commit
+            _db.SaveChanges();
+
+            //Devolvemos un redirect a la acción Index
+            return RedirectToAction("Index");
         }
     }
 }
