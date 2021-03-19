@@ -56,5 +56,26 @@ namespace WebApplicationNET.Controllers
             }
             return View(obj);
         }
+
+        //GET - EDIT Editar categoria
+        public IActionResult Edit(int? id)
+        {
+            //Si es null o 0 no existira por tanto no podemos buscarlo.
+            if(id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            //Lo buscamos en la bbdd para editarlo
+            var obj = _db.Category.Find(id);
+            //Si no lo encuentra devolvemos notFound como previamente.
+            if(obj == null)
+            {
+                return NotFound();
+            }
+
+            //Si lo recuperamos lo enviamos por parametro a la view
+            return View(obj);
+        }
     }
 }
